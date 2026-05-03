@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <meta name="description"
+        content="Matplotlib operations covering plots, histograms, bar charts, markers, and subplots.">
+    <title>Matplotlib Operations</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700&display=swap" rel="stylesheet">
+    <link href="../assets/css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <aside class="col-md-5">
+                <div class="sticky-top">
+                    <h2 class="mb-1">
+                        <a class="text-muted" href="../index.html">home page</a>
+                        <span class="text-muted">of</span>
+                    </h2>
+                    <h1 class="mb-1"><a href="../index.html">Rohit Maity</a></h1>
+                    <h2 class="mb-1 ps-md-5">Senior Staff Design Engineer @ Schneider Electric Industrial Automation |
+                        Python | Machine Learning | Deep Learning</h2>
+                    <h3 class="mb-0"><a href="mailto:official.rohitmaity@gmail.com">official.rohitmaity@gmail.com</a>
+                    </h3>
+                    <p class="social-line mb-0">
+                        <a class="text-emphasis" href="https://www.linkedin.com/in/rohit-maity-85334a114/"
+                            target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        <a class="text-emphasis" href="https://github.com/rmaity1991" target="_blank"
+                            rel="noopener noreferrer">GitHub</a>
+                    </p>
+                    <p class="follow-line mb-0">
+                        <a class="link-btn" href="https://github.com/rmaity1991/" target="_blank"
+                            rel="noopener noreferrer">Follow For Latest Updates</a>
+                    </p>
+                    <nav>
+                        <ul class="nav">
+                            <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../projects.html">Projects</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="../blogs.html">Technical Blogs</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="../certifications.html">Certifications</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+
+            <main class="col-md-7 blog-content">
+                <p class="inline-actions">
+                    <a class="link-btn"
+                        href="https://www.linkedin.com/sharing/share-offsite/?url=https://rmaity1991.github.io/blogs/matplotlib-operations.html"
+                        target="_blank" rel="noopener noreferrer">Share on LinkedIn</a>
+                    <a class="link-btn" href="../blogs.html">Back to All Blogs</a>
+                </p>
+
+                <div class="blog-article panel">
+                    <h2>Matplotlib Operations</h2>
+
+                    <p>Matplotlib is a library for creating plots ,graphs and charts.
+                        It draws its influence from Matlab, and it works efficiently with NumPy and
+                        Pandas for good graphic visualization which enhances yout data analysis
+                        projects.
+                        We start with importing matplotlib.pyplot library and using %matplotlib inline</p>
+
+                    <p>You can view the documentation in more detail here:</p>
+                    <ul>
+                        <li><a href="https://matplotlib.org/tutorials/introductory/pyplot.html" target="_blank"
+                                rel="noopener noreferrer">Documentation</a></li>
+                    </ul>
+
+                    <pre><code>import matplotlib.pyplot as plt
+#The below line helps in presenting plots in Jupyiter notebook.
+%matplotlib inline</code></pre>
+
+                    <p>Lets create some data for our first graph,
+                        A plot from two numpy arrays <code>x</code> <code>y</code> using <code>plot()</code>.</p>
+
+                    <pre><code>import numpy as np
+
+x=np.arange(0,10)
+y=x**3+10
+
+result = plt.plot(x, y)
+plt.xlabel("X") 
+plt.ylabel("Y")
+plt.title("Example") 
+plt.suptitle("Basic Plot from Matplotlib") 
+plt.show()</code></pre>
+
+                    <figure class="figure">
+                        <img src="../images/image-17.png" alt="Matplotlib basic plot">
+                    </figure>
+
+                    <p>In the above code,</p>
+                    <ol>
+                        <li>We called the plot() function to plot the graph between the data we have created.</li>
+                        <li>We named the x and the y labels using xlabel() and ylabel()</li>
+                        <li>We named the graph with a title using title()</li>
+                        <li>We showed the graph here using the show() function</li>
+                    </ol>
+
+                    <p>From the graph above we saw that the boundary of x and y axis is
+                        selected automatically based on the data we have created.
+                        We can vary this using the plt.axis() function where the we pass a
+                        list which has the x axis and y axis parameters</p>
+
+                    <pre><code>x=np.arange(0,10)
+y=x+10
+result = plt.plot(x, y)
+plt.axis([2,10,10,19])
+plt.xlabel("X") 
+plt.ylabel("Y")
+plt.title("Example") 
+plt.suptitle("Basic Plot from Matplotlib") 
+plt.show()</code></pre>
+
+                    <figure class="figure">
+                        <img src="../images/image-18.png" alt="Matplotlib axis example">
+                    </figure>
+
+                    <p>While we are calling the plot function we can specify the color of the graph
+                        line, the types of points we can use and more using a formatted string passed
+                        to the plot function.</p>
+
+                    <pre><code>plt.plot(
+    x, y, "r*"
+) 
+plt.xlabel("X")
+plt.ylabel("Y")
+plt.title("Formatted Data Points")
+plt.show()</code></pre>
+
+                    <figure class="figure">
+                        <img src="../images/image-19.png" alt="Matplotlib red star plot">
+                    </figure>
+
+                    <p><strong>Colors</strong></p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>character</th>
+                                <th>color</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>b</td>
+                                <td>blue</td>
+                            </tr>
+                            <tr>
+                                <td>g</td>
+                                <td>green</td>
+                            </tr>
+                            <tr>
+                                <td>r</td>
+                                <td>red</td>
+                            </tr>
+                            <tr>
+                                <td>c</td>
+                                <td>cyan</td>
+                            </tr>
+                            <tr>
+                                <td>m</td>
+                                <td>magenta</td>
+                            </tr>
+                            <tr>
+                                <td>y</td>
+                                <td>yellow</td>
+                            </tr>
+                            <tr>
+                                <td>k</td>
+                                <td>black</td>
+                            </tr>
+                            <tr>
+                                <td>w</td>
+                                <td>white</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p><strong>Line Styles</strong></p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>character</th>
+                                <th>description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>-</td>
+                                <td>solid line</td>
+                            </tr>
+                            <tr>
+                                <td>--</td>
+                                <td>dashed line</td>
+                            </tr>
+                            <tr>
+                                <td>-.</td>
+                                <td>dash-dot</td>
+                            </tr>
+                            <tr>
+                                <td>:</td>
+                                <td>dotted line</td>
+                            </tr>
+                            <tr>
+                                <td>.</td>
+                                <td>point marker</td>
+                            </tr>
+                            <tr>
+                                <td>,</td>
+                                <td>pixel marker</td>
+                            </tr>
+                            <tr>
+                                <td>o</td>
+                                <td>circle marker</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <pre><code>plt.plot(
+    x, y, "r^"
+) 
+plt.xlabel("X")
+plt.ylabel("Y")
+plt.title("Formatted Data Points")
+plt.show()</code></pre>
+
+                    <figure class="figure">
+                        <img src="../images/image-20.png" alt="Matplotlib triangle markers">
+                    </figure>
+
+                    <p>We can plot the x and y of multiple graphs in the same plot
+                        using the option of sequencing them as below :
+                        <code>plot(x1,y1,format1,x2,y2,format2,x3,y3,format3)</code>
+                    </p>
+
+                    <pre><code>x = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+y2 = x**2
+y3 = x**3
+y4 = x**4
+result = plt.plot(
+    x, y2, "r-", x, y3, "b--", x, y4, "g-."
+)
+plt.xlabel("X") 
+plt.ylabel("Y")  
+plt.title("Plotting multiple series") 
+plt.show()</code></pre>
+
+                    <figure class="figure">
+                        <img src="../images/image-21.png" alt="Matplotlib multiple series">
+                    </figure>
+
+                    <p>The <code>hist()</code> function is used to plot a histogram</p>
+
+                    <pre><code>x = np.random.randn(10000)
+result=plt.hist(x, bins=50,color="red")
+plt.show()
+print(result)</code></pre>
+
+                    <figure class="figure">
+                        <img src="../images/image-22.png" alt="Matplotlib histogram">
+                    </figure>
+
+                    <p>Bar Charts</p>
+
+                    <pre><code>groups = [0, 1, 2, 3, 4]
+grparray = np.array(groups)
+
+values = [75, 60, 80, 77, 90]
+
+plt.bar(
+    groups, values, align="center"
+) 
+
+plt.ylabel("Y Label")  # label the y-axis
+plt.title("Bar Charts")  # title is a matlab-like formatting string
+plt.show()</code></pre>
+
+                    <figure class="figure">
+                        <img src="../images/image-23.png" alt="Matplotlib bar chart">
+                    </figure>
+
+                    <pre><code>ypoints = np.array([3, 8, 1, 10])
+
+plt.plot(ypoints, marker="o")  # plot the points
+plt.show()</code></pre>
+
+                    <figure class="figure">
+                        <img src="../images/image-24.png" alt="Matplotlib marker plot">
+                    </figure>
+
+                    <pre><code>ypoints = np.array([3, 8, 1, 10])
+
+plt.plot(ypoints, marker="o", ms=20) 
+plt.show()</code></pre>
+
+                    <figure class="figure">
+                        <img src="../images/image-25.png" alt="Matplotlib large marker plot">
+                    </figure>
+
+                    <p>Subplots mean a group of smaller axes that can exist together
+                        within a single figure. <code>subplot(rows,columns,plot_number)</code></p>
+
+                    <pre><code># plot 1:
+x = np.array([0, 1, 2, 3])
+y = np.array([3, 8, 1, 10])
+
+plt.subplot(1, 2, 1) 
+plt.plot(x, y)  # plot the data
+
+# plot 2:
+x = np.array([0, 1, 2, 3])
+y = np.array([10, 20, 30, 40])
+
+plt.subplot(1, 2, 2) 
+plt.plot(x, y) 
+
+plt.show()</code></pre>
+
+                    <figure class="figure">
+                        <img src="../images/image-26.png" alt="Matplotlib subplot example">
+                    </figure>
+                </div>
+
+                <p class="footer-note">Copyright 2026 Rohit Maity. All rights reserved.</p>
+            </main>
+        </div>
+    </div>
+    <script src="../assets/js/main.js" defer></script>
+</body>
+
+</html>

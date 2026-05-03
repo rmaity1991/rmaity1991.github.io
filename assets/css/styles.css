@@ -4,15 +4,30 @@ body {
     padding: 0;
 }
 
+:root {
+    --bg: #f2ede6;
+    --text: #43362f;
+    --heading: #5a4438;
+    --muted: #8d7c6f;
+    --link: #7a4e35;
+    --link-accent: #9a6c4d;
+    --surface: #f8f3ed;
+    --surface-soft: #efe4d7;
+    --border: #d6c6b8;
+    --code-bg: #eadfce;
+    --code-block-bg: #4b3a31;
+    --code-block-text: #f5eee5;
+}
+
 body {
     font-family: "Roboto", "Segoe UI", Arial, sans-serif;
-    color: #2b2b2b;
-    background-color: #f5f5f3;
+    color: var(--text);
+    background-color: var(--bg);
     line-height: 1.5;
 }
 
 a {
-    color: #0d5fa6;
+    color: var(--link);
     text-decoration: none;
 }
 
@@ -47,7 +62,7 @@ h2,
 h3 {
     margin: 0;
     font-weight: 700;
-    color: #1f2a36;
+    color: var(--heading);
 }
 
 h1 {
@@ -82,11 +97,11 @@ h3 {
 }
 
 .text-muted {
-    color: #6a6f75;
+    color: var(--muted);
 }
 
 .text-emphasis {
-    color: #1f2a36;
+    color: var(--heading);
 }
 
 .figure {
@@ -97,13 +112,13 @@ h3 {
     width: 100%;
     height: auto;
     border-radius: 8px;
-    border: 1px solid #d9d9d9;
+    border: 1px solid var(--border);
 }
 
 .figure-caption {
     margin-top: 4px;
     font-size: 0.85rem;
-    color: #6a6f75;
+    color: var(--muted);
 }
 
 .text-end {
@@ -123,12 +138,12 @@ h3 {
 .nav-link {
     display: inline-block;
     padding: 0;
-    color: #2b2b2b;
+    color: var(--text);
 }
 
 .nav-link.active {
     font-weight: 700;
-    color: #0d5fa6;
+    color: var(--link);
 }
 
 .social-line {
@@ -144,9 +159,36 @@ h3 {
     margin-top: 10px;
 }
 
+.cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.cert-card {
+    display: block;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.cert-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.cert-caption {
+    font-size: 0.8rem;
+    color: var(--muted);
+    padding: 8px 10px;
+}
+
 .panel {
-    background: #ffffff;
-    border: 1px solid #e2e2e2;
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: 8px;
     padding: 14px;
     margin-bottom: 12px;
@@ -160,7 +202,7 @@ dt {
     margin-top: 14px;
     margin-bottom: 6px;
     font-weight: 700;
-    color: #1f2a36;
+    color: var(--heading);
 }
 
 dd {
@@ -188,14 +230,14 @@ dd {
 
 .blog-article code {
     font-family: Consolas, "Courier New", monospace;
-    background: #eef3f8;
+    background: var(--code-bg);
     padding: 1px 5px;
     border-radius: 4px;
 }
 
 .blog-article pre {
-    background: #1f2a36;
-    color: #f2f5f7;
+    background: var(--code-block-bg);
+    color: var(--code-block-text);
     border-radius: 8px;
     padding: 12px;
     overflow-x: auto;
@@ -209,6 +251,15 @@ dd {
     border-radius: 0;
 }
 
+.blog-article .figure {
+    text-align: center;
+}
+
+.blog-article .figure img {
+    width: min(78%, 460px);
+    margin: 0 auto;
+}
+
 .inline-actions {
     display: flex;
     gap: 10px;
@@ -218,22 +269,22 @@ dd {
 
 .link-btn {
     display: inline-block;
-    border: 1px solid #cfcfcf;
+    border: 1px solid var(--border);
     border-radius: 6px;
     padding: 6px 10px;
-    background: #fafafa;
-    color: #1f2a36;
+    background: var(--surface);
+    color: var(--heading);
 }
 
 .link-btn:hover,
 .link-btn:focus {
-    border-color: #0d5fa6;
+    border-color: var(--link-accent);
     text-decoration: none;
 }
 
 .footer-note {
     margin-top: 16px;
-    color: #6a6f75;
+    color: var(--muted);
     font-size: 0.9rem;
 }
 
@@ -257,7 +308,7 @@ dd {
     height: 3px;
     transform-origin: left center;
     transform: scaleX(0);
-    background: linear-gradient(90deg, #0d5fa6, #44a7d8);
+    background: linear-gradient(90deg, #7a4e35, #b08a6a);
 }
 
 .to-top-btn {
@@ -265,10 +316,10 @@ dd {
     right: 16px;
     bottom: 20px;
     z-index: 998;
-    border: 1px solid #c8d4e0;
+    border: 1px solid var(--border);
     border-radius: 999px;
-    background: #ffffff;
-    color: #1f2a36;
+    background: var(--surface);
+    color: var(--heading);
     font-size: 0.85rem;
     padding: 7px 12px;
     cursor: pointer;
@@ -286,7 +337,7 @@ dd {
 
 .to-top-btn:hover,
 .to-top-btn:focus {
-    box-shadow: 0 6px 18px rgba(13, 95, 166, 0.2);
+    box-shadow: 0 6px 18px rgba(122, 78, 53, 0.25);
 }
 
 .panel-lift {
@@ -295,7 +346,7 @@ dd {
 }
 
 .panel-lift:hover {
-    box-shadow: 0 10px 24px rgba(31, 42, 54, 0.12);
+    box-shadow: 0 10px 24px rgba(90, 68, 56, 0.14);
 }
 
 @media (prefers-reduced-motion: reduce) {

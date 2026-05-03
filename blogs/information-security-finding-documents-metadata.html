@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <meta name="description" content="Information Security article on finding document metadata during reconnaissance.">
+    <title>Information Security : Finding Documents Metadata</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700&display=swap" rel="stylesheet">
+    <link href="../assets/css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <aside class="col-md-5">
+                <div class="sticky-top">
+                    <h2 class="mb-1">
+                        <a class="text-muted" href="../index.html">home page</a>
+                        <span class="text-muted">of</span>
+                    </h2>
+                    <h1 class="mb-1"><a href="../index.html">Rohit Maity</a></h1>
+                    <h2 class="mb-1 ps-md-5">Senior Staff Design Engineer @ Schneider Electric Industrial Automation |
+                        Python | Machine Learning | Deep Learning</h2>
+                    <h3 class="mb-0"><a href="mailto:official.rohitmaity@gmail.com">official.rohitmaity@gmail.com</a>
+                    </h3>
+                    <p class="social-line mb-0">
+                        <a class="text-emphasis" href="https://www.linkedin.com/in/rohit-maity-85334a114/"
+                            target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        <a class="text-emphasis" href="https://github.com/rmaity1991" target="_blank"
+                            rel="noopener noreferrer">GitHub</a>
+                    </p>
+                    <p class="follow-line mb-0">
+                        <a class="link-btn" href="https://github.com/rmaity1991/" target="_blank"
+                            rel="noopener noreferrer">Follow For Latest Updates</a>
+                    </p>
+                    <nav>
+                        <ul class="nav">
+                            <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../projects.html">Projects</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="../blogs.html">Technical Blogs</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="../certifications.html">Certifications</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+
+            <main class="col-md-7 blog-content">
+                <p class="inline-actions">
+                    <a class="link-btn"
+                        href="https://www.linkedin.com/sharing/share-offsite/?url=https://rmaity1991.github.io/blogs/information-security-finding-documents-metadata.html"
+                        target="_blank" rel="noopener noreferrer">Share on LinkedIn</a>
+                    <a class="link-btn" href="../blogs.html">Back to All Blogs</a>
+                </p>
+
+                <div class="blog-article panel">
+                    <h2>Information Security : Finding Documents Metadata</h2>
+
+                    <p>A vast quantity of information is embedded in document files by the tools that corporations
+                        employ to create their papers. Naturally, the contents of the file comprise a large portion of
+                        this information. However, the file also contains a significant amount of metadata, which is
+                        information about information or information that describes other information. A large portion
+                        of the formatting and presentation of the other data in the file are related to this
+                        information. In addition to this formatting information, many applications for creating and
+                        modifying files contain other metadata items that penetration testers may find helpful during
+                        our reconnaissance stage, for example we can look at below information.</p>
+
+                    <h3>Why Document Metadata Matters</h3>
+                    <ul>
+                        <li>For password-guessing and exploitation assaults, penetration testers frequently require
+                            usernames which may be embedded in the metadata.</li>
+                        <li>Understanding the entire trajectory of the original file at the time of creation can provide
+                            valuable insights. Information about the intended structure, such as tips regarding crucial
+                            folders, frequently mounted file servers, and typical user behaviors.</li>
+                        <li>If spear phishing tests (sending emails to target personnel to determine if they will click
+                            links or open attachments) are part of the penetration test scope, this information may be
+                            helpful. But such tests should only be conducted if they are specifically permitted for the
+                            given target persons who are specifically covered by the test’s scope.</li>
+                        <li>Since client-side exploitation is a prevalent attack vector, penetration testers may find it
+                            useful to identify which client-side programs are being used, such as the operating system
+                            type, office suite, and PDF-generating tool. Version numbers of this software are frequently
+                            also revealed via metadata, however they may not always be the most recent version because
+                            they were in use when the document was written or last changed.</li>
+                        <li>Additional details: Additional helpful information is frequently linked to document content
+                            that isn’t visible on the application’s screen, like undo information, earlier edits, and
+                            hidden or obscured information (like a spreadsheet’s collapsed column that is hidden or a
+                            document’s critical text that is hidden).</li>
+                    </ul>
+
+                    <h3>Collecting Documents for Analysis</h3>
+                    <p>A penetration tester must first retrieve files for analysis before beginning metadata analysis.
+                        These documents could be gathered using a variety of techniques.</p>
+
+                    <p>First, during the preparation stages of the testing project, the penetration tester might have
+                        already obtained some documents created or modified by target system workers. For instance, the
+                        tester might have been provided with contracts, policies and procedures, schematics,
+                        non-disclosure agreements, Rules of Engagement agreements, and other material.</p>
+
+                    <h3>Tools for Metadata Extraction</h3>
+                    <p>Document metadata can be extracted using a number of different technologies. Among the most
+                        potent are FOCA, Exif tool, and others.</p>
+
+                    <p>These free tools are all designed to extract particular, listed metadata categories for a
+                        particular collection of files. In other words, these programs extract structured metadata from
+                        documents that are arranged according to a particular format, with particular metadata tags
+                        and/or places.</p>
+
+                    <p>But regardless of the structure, the strings command extracts every string from a specified file.
+                        Strings may extract several kinds of data from any type of file with an unknown structure; it is
+                        not just focused on metadata.</p>
+
+                    <p>In a jumble of output with other interesting strings, the strings command will frequently locate
+                        metadata from files that other tools (which do not understand the structure of the file) are
+                        unable to find. Although it can be challenging to search through the strings command’s output,
+                        it frequently yields some helpful nuggets.</p>
+
+                    <h3>Exif Tool</h3>
+                    <p>The Exif tool application is designed to read, write, or manipulate metadata in over a hundred
+                        different file types, such as PDFs, office documents (doc, dot, xis, ppt, and more), audio
+                        files, videos, photos, and many more.</p>
+
+                    <p>Exif tool manages one or more files that are supplied to it upon command-line invocation by
+                        default. As an alternative, the program can be configured to recursively traverse a directory
+                        structure and analyze every file it encounters, processing entire directories on the local
+                        workstation where it operates.</p>
+                </div>
+
+                <p class="footer-note">Copyright 2026 Rohit Maity. All rights reserved.</p>
+            </main>
+        </div>
+    </div>
+    <script src="../assets/js/main.js" defer></script>
+</body>
+
+</html>

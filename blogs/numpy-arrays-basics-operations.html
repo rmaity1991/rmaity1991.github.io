@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <meta name="description"
+        content="NumPy arrays basics, creation methods, indexing, broadcasting, and core mathematical operations.">
+    <title>NumPy Arrays: Basics and Operations</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700&display=swap" rel="stylesheet">
+    <link href="../assets/css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <aside class="col-md-5">
+                <div class="sticky-top">
+                    <h2 class="mb-1">
+                        <a class="text-muted" href="../index.html">home page</a>
+                        <span class="text-muted">of</span>
+                    </h2>
+                    <h1 class="mb-1"><a href="../index.html">Rohit Maity</a></h1>
+                    <h2 class="mb-1 ps-md-5">Senior Staff Design Engineer @ Schneider Electric Industrial Automation |
+                        Python | Machine Learning | Deep Learning</h2>
+                    <h3 class="mb-0"><a href="mailto:official.rohitmaity@gmail.com">official.rohitmaity@gmail.com</a>
+                    </h3>
+                    <p class="social-line mb-0">
+                        <a class="text-emphasis" href="https://www.linkedin.com/in/rohit-maity-85334a114/"
+                            target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        <a class="text-emphasis" href="https://github.com/rmaity1991" target="_blank"
+                            rel="noopener noreferrer">GitHub</a>
+                    </p>
+                    <p class="follow-line mb-0">
+                        <a class="link-btn" href="https://github.com/rmaity1991/" target="_blank"
+                            rel="noopener noreferrer">Follow For Latest Updates</a>
+                    </p>
+                    <nav>
+                        <ul class="nav">
+                            <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../projects.html">Projects</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="../blogs.html">Technical Blogs</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="../certifications.html">Certifications</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+
+            <main class="col-md-7 blog-content">
+                <p class="inline-actions">
+                    <a class="link-btn"
+                        href="https://www.linkedin.com/sharing/share-offsite/?url=https://rmaity1991.github.io/blogs/numpy-arrays-basics-operations.html"
+                        target="_blank" rel="noopener noreferrer">Share on LinkedIn</a>
+                    <a class="link-btn" href="../blogs.html">Back to All Blogs</a>
+                </p>
+
+                <div class="blog-article panel">
+                    <h2>NumPy Arrays: Basics and Operations</h2>
+
+                    <p>NumPy is a 3rd party library which is considered as defacto standard for handling
+                        multidimensional array in Python, it serves as the base library for many of the data analytics,
+                        machine learning &amp; deep learning libraries which are out there. But to explain
+                        multidimensional array we need to see few examples.</p>
+
+                    <p>For display purposes we have created a function which has few defined functions:</p>
+
+                    <ul>
+                        <li><code>ndim()</code>: displays the number of dimensions of the array.</li>
+                        <li><code>size</code>: displays the size of the array.</li>
+                        <li><code>shape</code>: displays the shape of the array and displays no of elements in each
+                            dimension of the array.</li>
+                        <li><code>dtype</code>: Shows the datatype of the array which generally is a NumPy datatype.
+                        </li>
+                    </ul>
+
+                    <pre><code>import numpy as np
+
+def display(array: np.ndarray):
+    result = f"""
+                The array is {array}
+                1. The no. of dimesions : {array.ndim}
+                2. The size of array : {array.size}
+                3. The shape of array : {array.shape}
+                4. The dtype of array : {array.dtype}
+"""
+    print(result)</code></pre>
+
+                    <p>This is the most simplest array that can be created with NumPy, it is 1D array or a vector in
+                        mathematics terms.</p>
+
+                    <pre><code>data = [1, 2, 3, 4, 5]
+array1 = np.array(data)
+display(array1)</code></pre>
+                    <figure class="figure">
+                        <img src="../images/image1.png" alt="NumPy 1D array output">
+                    </figure>
+
+                    <p>Now since we talked about multi dimensional arrays, lets us move a bit up to create a 2D array
+                        called matrix.</p>
+
+                    <pre><code>array2 = np.array(object=[[1, 2, 3], [4, 5, 6]])
+display(array2)</code></pre>
+                    <figure class="figure">
+                        <img src="../images/image.png" alt="NumPy 2D array output">
+                    </figure>
+
+                    <p>To show a multi dimensional array we will be using random data from the random module for this,
+                        later we will use NumPy functions.</p>
+
+                    <pre><code>import random
+
+data = [random.random() for x in range(100)]
+data</code></pre>
+                    <figure class="figure">
+                        <img src="../images/image-1.png" alt="Random data output">
+                    </figure>
+
+                    <p>Lets create the array using the above data.</p>
+
+                    <pre><code>array3 = np.array(data, ndmin=4)
+display(array3)</code></pre>
+                    <figure class="figure">
+                        <img src="../images/image-2.png" alt="NumPy ndmin example">
+                    </figure>
+
+                    <p>The <code>ndim()</code> function tells us the no fo dimentions of the array, we can infer this by
+                        counting the end brackets of the array, here we have 4 such end brackets.</p>
+
+                    <pre><code>array3.ndim</code></pre>
+
+                    <p>We can use the <code>reshape()</code> function to increase the dimensions or decrease it as per
+                        our requirements.</p>
+
+                    <pre><code>array3.reshape(2, 5, 10)</code></pre>
+
+                    <p>Now this is a little difficult to visualize, we can try the following, the i dimension has 2
+                        elements, then the next j dimension has 10 vectors of i elements each, the k dimension has 5
+                        such j vectors <code>[k,j,i] = [5,10,2]</code>.</p>
+
+                    <pre><code>array3.reshape(5, 10, 2)</code></pre>
+                    <figure class="figure">
+                        <img src="../images/image-3.png" alt="NumPy reshape example">
+                    </figure>
+
+                    <h3>Array Creation Functions</h3>
+
+                    <p>Next we will look at few functions on NumPy which will help us create arrays in NumPy:</p>
+
+                    <ol>
+                        <li><code>linspace()</code></li>
+                        <li><code>arange()</code></li>
+                        <li><code>zeros()</code></li>
+                        <li><code>ones()</code></li>
+                        <li>random module</li>
+                    </ol>
+
+                    <h3>1. linspace()</h3>
+
+                    <p>Creates a array of numpy whihc has equally spaced values between the start and stop values.</p>
+
+                    <pre><code>array1 = np.linspace(0, 1, 40)
+display(array1)</code></pre>
+                    <figure class="figure">
+                        <img src="../images/image-4.png" alt="linspace output">
+                    </figure>
+
+                    <p><em>Press enter or click to view image in full size.</em></p>
+
+                    <pre><code>display(array1.reshape(10, 2, 2))</code></pre>
+                    <figure class="figure">
+                        <img src="../images/image-5.png" alt="linspace reshape output">
+                    </figure>
+
+                    <h3>2. arange()</h3>
+
+                    <p>Now <code>arange()</code> is like the range functions which gets data from the start to stop with
+                        an optional step size.</p>
+
+                    <pre><code>array1 = np.arange(0, 10, step=0.2)
+display(array1)</code></pre>
+                    <figure class="figure">
+                        <img src="../images/image-6.png" alt="arange output">
+                    </figure>
+
+                    <h3>3. zeros</h3>
+
+                    <p>Creates an array of zeros of a given shape.</p>
+
+                    <pre><code>array1 = np.zeros(shape=(2, 2, 2))
+display(array1)</code></pre>
+                    <figure class="figure">
+                        <img src="../images/image-7.png" alt="zeros output">
+                    </figure>
+
+                    <h3>4. ones</h3>
+
+                    <p>Creates an array of ones of a given shape.</p>
+
+                    <pre><code>array1 = np.ones(shape=(2, 2, 2))
+display(array1)</code></pre>
+                    <figure class="figure">
+                        <img src="../images/image-8.png" alt="ones output">
+                    </figure>
+
+                    <h3>Data Types in NumPy Arrays</h3>
+
+                    <p>A NumPy array has a single data type for all its elements. This means we cannot create a
+                        heterogenous array like we create for lists in python, hence NumPy arrays are faster than python
+                        lists. But we can create NumPy arrays of all data types as defined in the list of datatypes
+                        supported by Numpy. Let us see some examples. For this we will create a function which will make
+                        our display better to show this.</p>
+
+                    <pre><code>def display1(array: np.ndarray):
+    print(array)
+    print("\nArray :")
+    for i in array:
+        print(i, type(i))
+
+array1 = np.array([1, 2])
+display1(array1)</code></pre>
+                    <figure class="figure">
+                        <img src="../images/image-9.png" alt="dtype example int">
+                    </figure>
+
+                    <pre><code>array1 = np.array([1, 2.4])
+display1(array1)</code></pre>
+                    <figure class="figure">
+                        <img src="../images/image-10.png" alt="dtype example float">
+                    </figure>
+
+                    <pre><code>array1 = np.array([1, "2"])
+display1(array1)</code></pre>
+                    <figure class="figure">
+                        <img src="../images/image-11.png" alt="dtype example string">
+                    </figure>
+
+                    <p>This demonstrates few of the data types of the arrays that can be defined in NumPy.</p>
+
+                    <h3>Basic Operations and Broadcasting</h3>
+
+                    <p>Now we will do some basic operations using NumPy array like addition, subtraction, multiplication
+                        etc.</p>
+
+                    <pre><code>array1 = np.array([1, 2, 3, 4, 5])
+array2 = np.array([1.0, 0.0, 1.0, 0.0, 1.0])
+print("Addition :")
+print(array1 + array2)
+print("Substraction :")
+print(array1 - array2)
+print("Multiply")
+print(array1 * array2)
+print("Division")
+print(array1 / 10)</code></pre>
+                    <figure class="figure">
+                        <img src="../images/image-12.png" alt="basic operation outputs">
+                    </figure>
+
+                    <p>Before we move on there is an important concept we need to highlight above NumPy array which
+                        makes operations faster. This is called broadcasting. To explain this look at the code blocks
+                        below.</p>
+
+                    <pre><code>list1 = [1, 2, 3, 4, 5]
+for i in list1:
+    print(i + 10)
+
+print(array1 + 10)
+a = np.array([1.0, 0.0, 1.0, 0.0, 1.0])
+print("a + 10:", a + 10)
+print("a - 10:", a - 10)
+print("a * 10:", a * 10)
+print("a / 10:", a / 10)
+print("a ** 10:", a**2)</code></pre>
+                    <figure class="figure">
+                        <img src="../images/image-13.png" alt="broadcasting outputs">
+                    </figure>
+
+                    <h3>Common NumPy Functions</h3>
+
+                    <p>We have few basic functions in NumPy which we will demonstrate now, which are basic.</p>
+
+                    <pre><code>array1 = np.array(np.random.random(size=(3, 3)))
+print(array1)
+
+print("Maximum of the array based on axis 0,1", end="\n")
+print(array1.min(axis=0))
+print(array1.min(axis=1))
+
+print("Sum of the array based on axis 0,1", end="\n")
+print(array1.sum(axis=0))
+print(array1.sum(axis=1))
+
+print("Mean of the array based on axis 0,1", end="\n")
+print(array1.mean(axis=0))
+print(array1.mean(axis=1))
+
+print("Sum of the array based on axis 0,1", end="\n")
+print(array1.sum(axis=0))
+print(array1.sum(axis=1))</code></pre>
+                    <figure class="figure">
+                        <img src="../images/image-14.png" alt="min sum mean outputs">
+                    </figure>
+
+                    <h3>Slicing and Indexing</h3>
+
+                    <pre><code>array1 = np.arange(50).reshape(5, 10)
+print("array:")
+print(array1)
+
+print("first row:")
+print(array1[0])
+
+print("rows 2-4")
+print(array1[2:])
+
+print("2nd element of 2nd row")
+print(array1[1, 1])
+
+print("every element of column 4")
+print(array1[:, 4])
+
+print("every element of columns 2 and 3")
+print(array1[:, 2:4])
+
+print("boolen indexing every element bigger that a threshold")
+print(array1[array1 > 10])</code></pre>
+
+                    <p>The above examples demonstrates the slicing capabilities of NumPy arrays which works similarly as
+                        list in python, here:</p>
+
+                    <p><code>[row_start:row_stop,column_start:column_stop]</code>, this is the common slicing paradigm.
+                    </p>
+
+                    <pre><code>a = np.array([[3, 1], [1, 3]])
+b = np.array([[3, 5], [4, 2]])
+z = np.dot(a, b)
+print(f"Dot  two array :\n{z}")
+z = np.sum(b)
+print(f"Sum of array :{z}")
+print(f"Add two array :\n{np.add(a,b)}")
+print(f"Mean of array :\n{np.mean(a)}")
+print(f"Matmul two array :\n{np.matmul(a,b)}")
+print(f"Multiply two array :\n {np.multiply(a,b)}")</code></pre>
+                    <figure class="figure">
+                        <img src="../images/image-15.png" alt="dot sum add mean matmul multiply outputs">
+                    </figure>
+
+                    <h3>Normal and Uniform Distribution</h3>
+
+                    <pre><code>print("An array of random numbers from uniform distribution")
+uniform = np.random.uniform(-4, 4, 1000000)
+print(uniform)
+
+print("An array of random numbers from normal distribution")
+normal = np.random.randn(1000000)
+print(normal)</code></pre>
+                    <figure class="figure">
+                        <img src="../images/image-16.png" alt="normal and uniform distribution outputs">
+                    </figure>
+
+                    <p>This concludes our discussion on NumPy array and its utilization for mathematical purposes. There
+                        are many more resources out there for further studies related to this, this should give you a
+                        good starting point.</p>
+                </div>
+
+                <p class="footer-note">Copyright 2026 Rohit Maity. All rights reserved.</p>
+            </main>
+        </div>
+    </div>
+    <script src="../assets/js/main.js" defer></script>
+</body>
+
+</html>
