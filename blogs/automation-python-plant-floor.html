@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <meta name="description" content="Python Asyncio Implementation basics with practical examples and comparisons.">
+    <title>Python Asyncio Implementation</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700&display=swap" rel="stylesheet">
+    <link href="../assets/css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <aside class="col-md-5">
+                <div class="sticky-top">
+                    <h2 class="mb-1">
+                        <a class="text-muted" href="../index.html">home page</a>
+                        <span class="text-muted">of</span>
+                    </h2>
+                    <h1 class="mb-1"><a href="../index.html">Rohit Maity</a></h1>
+                    <h2 class="mb-1 ps-md-5">Senior Staff Design Engineer @ Schneider Electric Industrial Automation |
+                        Python | Machine Learning | Deep Learning</h2>
+                    <h3 class="mb-0"><a href="mailto:official.rohitmaity@gmail.com">official.rohitmaity@gmail.com</a>
+                    </h3>
+                    <p class="social-line mb-0">
+                        <a class="text-emphasis" href="https://www.linkedin.com/in/rohit-maity-85334a114/"
+                            target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        <a class="text-emphasis" href="https://github.com/rmaity1991" target="_blank"
+                            rel="noopener noreferrer">GitHub</a>
+                    </p>
+                    <nav>
+                        <ul class="nav">
+                            <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../projects.html">Projects</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="../blogs.html">Technical Blogs</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+
+            <main class="col-md-7 blog-content">
+                <h2>Python Asyncio Implementation</h2>
+                <p>We will be discussing the basics of using <code>asyncio</code> in Python. Let's first discuss this
+                    using an example.</p>
+
+                <p class="inline-actions">
+                    <a class="link-btn"
+                        href="https://www.linkedin.com/sharing/share-offsite/?url=https://YOUR-GITHUB-PAGES-URL/blogs/automation-python-plant-floor.html"
+                        target="_blank" rel="noopener noreferrer">Share on LinkedIn</a>
+                </p>
+
+                <h3>LinkedIn Post Draft</h3>
+                <div class="panel">
+                    <p>Python Asyncio Implementation</p>
+                    <p>A practical walkthrough of coroutine basics in Python, including sequential vs asyncio vs
+                        threading execution models.</p>
+                    <p>#python #python3 #pythonprogramming #asyncio</p>
+                    <p>https://YOUR-GITHUB-PAGES-URL/blogs/automation-python-plant-floor.html</p>
+                </div>
+
+                <h3>Sequential Execution Example</h3>
+                <p>The article begins with a basic sequential function call where a blocking <code>sleep</code>
+                    delays the rest of execution.</p>
+                <div class="panel">
+                    <pre><code>from time import perf_counter, sleep
+
+def function1():
+    print("Call made to the second function....")
+    sleep(2)
+    print("Second function1 execution completed...")
+
+s = perf_counter()
+print("The main function is starting...")
+function1()
+print("Hello World")
+print("The main function ending ...")
+print(f"The total time taken is : {perf_counter()-s}")</code></pre>
+                </div>
+                <p>This is sequential execution: main waits until <code>function1()</code> completes.</p>
+
+                <h3>Coroutine Basics: async and await</h3>
+                <p>A coroutine is introduced using <code>async def</code>. The <code>await</code> keyword gives
+                    control back to the event loop so other coroutines can run while waiting.</p>
+                <p>Important syntax rules highlighted in the article:</p>
+                <ul>
+                    <li><code>await</code> can only be used inside <code>async def</code>.</li>
+                    <li>Using <code>await</code> outside a coroutine raises <code>SyntaxError</code>.</li>
+                    <li><code>asyncio.sleep()</code> is non-blocking compared to <code>time.sleep()</code>.</li>
+                </ul>
+
+                <h3>Asyncio Gather Example</h3>
+                <div class="panel">
+                    <pre><code>import asyncio
+from time import perf_counter
+
+count = 0
+
+async def function1():
+    print(f"I am function {count} printing ones")
+    await asyncio.sleep(1)
+    print(f"I am function {count} printing twice")
+
+async def main():
+    await asyncio.gather(function1(), function1(), function1())
+
+if __name__ == "__main__":
+    print("I am main starting..")
+    s = perf_counter()
+    asyncio.run(main())
+    e = perf_counter() - s
+    print(f"Main Executed in {e:0.2f} seconds.")</code></pre>
+                </div>
+                <p>With <code>asyncio.gather()</code>, coroutine execution is interleaved when each coroutine reaches
+                    an <code>await</code> point.</p>
+
+                <h3>Shared State Demonstration</h3>
+                <p>The article also demonstrates a shared <code>count</code> variable to show how coroutine execution
+                    order interleaves around <code>await asyncio.sleep(1)</code>.</p>
+
+                <h3>Comparison: Asyncio vs Sequential vs Threading</h3>
+                <p>A non-async sequential version and a threading version are compared with similar function logic.</p>
+                <p>Key conclusion from the article: async IO is a single-threaded, single-process cooperative
+                    multitasking model that can create an impression of concurrency, while threading uses actual
+                    threads.</p>
+
+                <h3>Takeaway</h3>
+                <p>Use <code>asyncio</code> when your workload is dominated by waiting (I/O-bound tasks) and you need
+                    efficient concurrent task scheduling without the overhead of many threads.</p>
+
+                <p class="footer-note">Copyright 2026 Rohit Maity. All rights reserved.</p>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>
