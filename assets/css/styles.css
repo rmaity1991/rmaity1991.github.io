@@ -174,6 +174,37 @@ dd {
     margin: 0 0 12px;
 }
 
+.blog-article {
+    line-height: 1.65;
+}
+
+.blog-article>*:last-child {
+    margin-bottom: 0;
+}
+
+.blog-article code {
+    font-family: Consolas, "Courier New", monospace;
+    background: #eef3f8;
+    padding: 1px 5px;
+    border-radius: 4px;
+}
+
+.blog-article pre {
+    background: #1f2a36;
+    color: #f2f5f7;
+    border-radius: 8px;
+    padding: 12px;
+    overflow-x: auto;
+    margin: 0 0 12px;
+}
+
+.blog-article pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    border-radius: 0;
+}
+
 .inline-actions {
     display: flex;
     gap: 10px;
@@ -200,6 +231,80 @@ dd {
     margin-top: 16px;
     color: #6a6f75;
     font-size: 0.9rem;
+}
+
+.reveal-item {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.5s ease, transform 0.6s ease;
+}
+
+.reveal-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: 3px;
+    transform-origin: left center;
+    transform: scaleX(0);
+    background: linear-gradient(90deg, #0d5fa6, #44a7d8);
+}
+
+.to-top-btn {
+    position: fixed;
+    right: 16px;
+    bottom: 20px;
+    z-index: 998;
+    border: 1px solid #c8d4e0;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #1f2a36;
+    font-size: 0.85rem;
+    padding: 7px 12px;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.to-top-btn.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.to-top-btn:hover,
+.to-top-btn:focus {
+    box-shadow: 0 6px 18px rgba(13, 95, 166, 0.2);
+}
+
+.panel-lift {
+    transition: transform 0.18s ease, box-shadow 0.2s ease;
+    transform-style: preserve-3d;
+}
+
+.panel-lift:hover {
+    box-shadow: 0 10px 24px rgba(31, 42, 54, 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal-item {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .to-top-btn,
+    .panel-lift {
+        transition: none;
+    }
 }
 
 @media (max-width: 900px) {

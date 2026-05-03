@@ -42,62 +42,128 @@
             </aside>
 
             <main class="col-md-7 blog-content">
-                <h2>Python Asyncio Implementation</h2>
-                <p>We will be discussing the basics of using <code>asyncio</code> in Python. Let's first discuss this
-                    using an example.</p>
-
                 <p class="inline-actions">
                     <a class="link-btn"
-                        href="https://www.linkedin.com/sharing/share-offsite/?url=https://YOUR-GITHUB-PAGES-URL/blogs/automation-python-plant-floor.html"
+                        href="https://www.linkedin.com/sharing/share-offsite/?url=https://rmaity1991.github.io/blogs/automation-python-plant-floor.html"
                         target="_blank" rel="noopener noreferrer">Share on LinkedIn</a>
+                    <a class="link-btn" href="../blogs.html">Back to All Blogs</a>
                 </p>
 
-                <h3>LinkedIn Post Draft</h3>
-                <div class="panel">
-                    <p>Python Asyncio Implementation</p>
-                    <p>A practical walkthrough of coroutine basics in Python, including sequential vs asyncio vs
-                        threading execution models.</p>
-                    <p>#python #python3 #pythonprogramming #asyncio</p>
-                    <p>https://YOUR-GITHUB-PAGES-URL/blogs/automation-python-plant-floor.html</p>
-                </div>
-
-                <h3>Sequential Execution Example</h3>
-                <p>The article begins with a basic sequential function call where a blocking <code>sleep</code>
-                    delays the rest of execution.</p>
-                <div class="panel">
-                    <pre><code>from time import perf_counter, sleep
+                <div class="blog-article panel">
+                    <p>We will be discussing the basics of using <code>asyncio</code> in <code>python</code>. Lets us
+                        first discuss this using an
+                        example.</p>
+                    <pre><code>from time import perf_counter,sleep
 
 def function1():
-    print("Call made to the second function....")
+    print("Call made to the second function....\n")
     sleep(2)
-    print("Second function1 execution completed...")
+    print("Second function1 execution completed...\n")
 
-s = perf_counter()
-print("The main function is starting...")
+
+s=perf_counter()
+print("The main function is starting...\n")    
 function1()
-print("Hello World")
-print("The main function ending ...")
+print("Hello World \n")
+print("The main function ending ...\n")
 print(f"The total time taken is : {perf_counter()-s}")</code></pre>
-                </div>
-                <p>This is sequential execution: main waits until <code>function1()</code> completes.</p>
+                    <p>Now we will see the output of the program for us to see what has happened.</p>
+                    <pre><code>The main function is starting...
 
-                <h3>Coroutine Basics: async and await</h3>
-                <p>A coroutine is introduced using <code>async def</code>. The <code>await</code> keyword gives
-                    control back to the event loop so other coroutines can run while waiting.</p>
-                <p>Important syntax rules highlighted in the article:</p>
-                <ul>
-                    <li><code>await</code> can only be used inside <code>async def</code>.</li>
-                    <li>Using <code>await</code> outside a coroutine raises <code>SyntaxError</code>.</li>
-                    <li><code>asyncio.sleep()</code> is non-blocking compared to <code>time.sleep()</code>.</li>
-                </ul>
+Call made to the second function....
 
-                <h3>Asyncio Gather Example</h3>
-                <div class="panel">
+Second function1 execution completed...
+
+Hello World 
+
+The main function ending ...
+
+The total time taken is : 2.0017361999925924
+                    </code></pre>
+
+                    <p>Lets see the code execution one by one :</p>
+                    <p>The first function which is the main function is called.
+                        Then the 2nd function called function1() has been called, it starts executing line by line until
+                        it reaches the sleep function and waits for 2 seconds.
+                        Then it exits the function1 and returns to the main function.
+                        This type of execution is called sequential function execution.</p>
+
+                    <p>A <code>coroutine</code> is a function that has the ability to halt its execution before
+                        returning and to
+                        temporarily transfer control to another <code>coroutine</code>.</p>
+
+                    <p>To demonstrate this we will use 2 keywords in <code>python</code> called <code>await</code> &amp;
+                        <code>async</code> and its uses.
+                    </p>
+
+                    <p>Let’s examine Python’s implementation of <code>async IO</code> now that you have a basic
+                        understanding of the
+                        idea. Despite having distinct functions, Python’s <code>asyncio</code> module and its two
+                        keywords — <code>async</code>
+                        and <code>await</code> — work together to facilitate the declaration, development, execution,
+                        and management
+                        of asynchronous code.</p>
+
+                    <p>The <code>sleep</code> function from <code>time</code> module &amp; <code>sleep</code> function
+                        under <code>asyncio</code> are used as stand-ins for
+                        any time-consuming procedures that include wait time. A sleep from time module call that
+                        essentially accomplishes nothing more than delay the execution of the function. While
+                        <code>asyncio.sleep</code> is used to use a non-blocking call (but one that also takes some time
+                        to finish),
+                        <code>sleep()</code> can represent any lengthy blocking function call.
+                    </p>
+
+                    <p>It is now necessary to define async, await, and the coroutine functions they produce in a more
+                        formal manner. Although this section is a bit lengthy, understanding async/await is crucial, so
+                        review it if necessary:</p>
+
+                    <p>Either an asynchronous generator or a native coroutine is introduced via the syntax async def. As
+                        you’ll see later, the terms async with and async for are equally acceptable.</p>
+
+                    <p>Function control is returned to the event loop by the keyword await. (The surrounding coroutine’s
+                        execution is halted.) The event loop is informed by await in this way if Python comes across an
+                        await function expression in the scope of main: “Suspend execution of function until whatever
+                        I’m waiting on — the result of function— is returned.” Go ahead and run something else in the
+                        meanwhile.</p>
+
+                    <p>Additionally, there are stringent guidelines for when and how to use <code>async/await</code>.
+                        Whether you are
+                        currently learning the syntax or have experience with <code>async/await</code>, these can be
+                        helpful:</p>
+
+                    <p>A <code>coroutine</code> is a function that is introduced using <code>async def</code>. Although
+                        they are all optional, it
+                        may employ <code>yield</code>, <code>return</code>, or <code>await</code>.
+                        <code>Async def noop(): pass</code> is declared to be valid:
+                    </p>
+
+                    <p>A <code>coroutine function</code> is created by using <code>await</code> and/or
+                        <code>return</code>. You have to wait for the results of
+                        a <code>coroutine function</code> before calling it.
+                    </p>
+
+                    <p>Using <code>yield</code> in an <code>async def</code> block is less prevalent and has only
+                        recently become acceptable in
+                        Python. You use <code>async</code> to iterate over the asynchronous generator that is produced
+                        by this. For
+                        the time being, put <code>async generators</code> out of your mind and concentrate on learning
+                        the syntax for
+                        <code>coroutine functions</code>, which employ <code>return</code> and/or <code>await</code>.
+                    </p>
+
+                    <p>A <code>SyntaxError</code> will be raised if anything specified with <code>async def</code> is
+                        unable to use <code>yield from</code>.
+                    </p>
+
+                    <p>Using <code>await</code> outside of an <code>async def</code> coroutine is a
+                        <code>SyntaxError</code>, just as using <code>yield</code> outside of a
+                        <code>def</code> function is a <code>SyntaxError</code>. Only in the <code>coroutine</code>’s
+                        body may you utilize <code>await</code>.
+                    </p>
+
                     <pre><code>import asyncio
 from time import perf_counter
-
-count = 0
-
+count=0
 async def function1():
     print(f"I am function {count} printing ones")
     await asyncio.sleep(1)
@@ -106,34 +172,181 @@ async def function1():
 async def main():
     await asyncio.gather(function1(), function1(), function1())
 
-if __name__ == "__main__":
-    print("I am main starting..")
+ 
+if __name__=="__main__":
+    print(f"I am main starting..")
     s = perf_counter()
     asyncio.run(main())
     e = perf_counter() - s
     print(f"Main Executed in {e:0.2f} seconds.")</code></pre>
+
+                    <pre><code>I am main starting..
+I am function 0 printing ones
+I am function 0 printing ones
+I am function 0 printing ones
+I am function 0 printing twice
+I am function 0 printing twice
+I am function 0 printing twice
+Main Executed in 1.00 seconds.</code></pre>
+
+                    <p>Look at the output of our program, we have constructed the program as follows:</p>
+
+                    <p>We first defined a function with <code>async</code> which means this will now be a separate
+                        <code>coroutine</code> which
+                        can be part of the <code>asyncio event loop</code>. To make a function part of the event loop of
+                        <code>asyncio</code> we
+                        will use the <code>asyncio.gather</code>. One thing to remember, we can only call
+                        <code>async</code> functions from inside
+                        a <code>async</code> function for that, because of this we have defined a
+                        <code>async main</code> function. To start the
+                        main loop we call the <code>asyncio.run</code>.
+                    </p>
+
+                    <p>As you can see from the output when we gathered the 3 <code>coroutines</code> which are instances
+                        of the
+                        <code>function1</code> . Once we call the <code>asyncio.run</code>, the first
+                        <code>coroutine</code> is called, and when it reaches the
+                        <code>sleep</code> function, the execution of the <code>coroutine</code> is paused and it moves
+                        to the next <code>coroutine</code>. As
+                        because of this we can see that from the output we have a distributed execution of the all
+                        <code>coroutines</code>. To explain this further lets see the next code.
+                    </p>
+
+                    <pre><code>import asyncio
+from time import perf_counter
+count=0
+async def function1():
+    global count
+    print(f"I am function which will read the current count which is {count} while beginning to execute")
+    count+=1
+    await asyncio.sleep(1)
+    count-=1
+    print(f"I am function which will read the current count which is {count} while ending to execute")
+
+async def main():
+    await asyncio.gather(function1(), function1(), function1())
+
+ 
+if __name__=="__main__":
+    print(f"I am main starting..")
+    s = perf_counter()
+    asyncio.run(main())
+    e = perf_counter() - s
+    print(f"Main Executed in {e:0.2f} seconds.")</code></pre>
+
+                    <pre><code>I am main starting..
+I am function which will read the current count which is 0 while beginning to execute
+I am function which will read the current count which is 1 while beginning to execute
+I am function which will read the current count which is 2 while beginning to execute
+I am function which will read the current count which is 2 while ending to execute
+I am function which will read the current count which is 1 while ending to execute
+I am function which will read the current count which is 0 while ending to execute
+Main Executed in 1.01 seconds.</code></pre>
+
+                    <p>We are sharing a common variable between the functions called <code>count</code>. Ones the
+                        function increments
+                        the <code>count</code>, the next <code>coroutine</code> takes the incremented number and
+                        increments it and so on, during
+                        the return pass of the functions it decrements a number.</p>
+
+                    <p>You may be wondering why we will use this type of programming. Lets see what happens without
+                        using the <code>asyncio</code>.</p>
+
+                    <pre><code>from time import perf_counter,sleep
+count=0
+def function1():
+    global count
+    print(f"I am function which will read the current count which is {count} while beginning to execute")
+    count+=1
+    sleep(1)
+    count-=1
+    print(f"I am function which will read the current count which is {count} while ending to execute")
+
+if __name__=="__main__":
+    print(f"I am main starting..")
+    s = perf_counter()
+    function1()
+    function1()
+    function1()
+    e = perf_counter() - s
+    print(f"Main Executed in {e:0.2f} seconds.")</code></pre>
+
+                    <pre><code>I am main starting..
+I am function which will read the current count which is 0 while beginning to execute
+I am function which will read the current count which is 0 while ending to execute
+I am function which will read the current count which is 0 while beginning to execute
+I am function which will read the current count which is 0 while ending to execute
+I am function which will read the current count which is 0 while beginning to execute
+I am function which will read the current count which is 0 while ending to execute
+Main Executed in 3.00 seconds.</code></pre>
+
+                    <p>You can easily see the difference of <code>sequential execution</code>. The time and the
+                        execution of the
+                        function shows the difference between <code>coroutine execution</code> and
+                        <code>sequential execution</code>. Now we will
+                        look at a <code>threading</code> example for the same function.
+                    </p>
+
+                    <pre><code>import threading
+from time import perf_counter,sleep
+count=0
+def function1():
+    global count
+    print(f"I am function which will read the current count which is {count} while beginning to execute")
+    count+=1
+    sleep(1)
+    count-=1
+    print(f"I am function which will read the current count which is {count} while ending to execute")
+
+if __name__=="__main__":
+    print(f"I am main starting..")
+    s = perf_counter()
+    x=threading.Thread(target=function1)
+    y=threading.Thread(target=function1)
+    z=threading.Thread(target=function1)
+    x.start()
+    y.start()
+    z.start()
+
+    x.join()
+    y.join()
+    z.join()
+
+    e = perf_counter() - s
+    print(f"Main Executed in {e:0.2f} seconds.")</code></pre>
+
+                    <pre><code>I am main starting..
+I am function which will read the current count which is 0 
+while beginning to execute
+I am function which will read the current count which is 1 
+while beginning to execute
+I am function which will read the current count which is 2 
+while beginning to execute
+I am function which will read the current count which is 2 
+while ending to execute
+I am function which will read the current count which is 1 
+while ending to execute
+I am function which will read the current count which is 0 
+while ending to execute
+Main Executed in 1.00 seconds.</code></pre>
+
+                    <p>So, we see no difference between what we did here with <code>asyncio</code>. The difference
+                        between the 2 is
+                        that, <code>async IO</code> is actually a <code>single-threaded</code>,
+                        <code>single-process</code> design that makes use of
+                        <code>cooperative multitasking</code>. In other words, even when only one <code>thread</code> is
+                        used in a single process,
+                        <code>async IO</code> creates the impression of concurrency. Although they can be scheduled
+                        concurrently,
+                        <code>coroutines</code> — a key component of <code>async IO</code> — are not always concurrent.
+                    </p>
                 </div>
-                <p>With <code>asyncio.gather()</code>, coroutine execution is interleaved when each coroutine reaches
-                    an <code>await</code> point.</p>
-
-                <h3>Shared State Demonstration</h3>
-                <p>The article also demonstrates a shared <code>count</code> variable to show how coroutine execution
-                    order interleaves around <code>await asyncio.sleep(1)</code>.</p>
-
-                <h3>Comparison: Asyncio vs Sequential vs Threading</h3>
-                <p>A non-async sequential version and a threading version are compared with similar function logic.</p>
-                <p>Key conclusion from the article: async IO is a single-threaded, single-process cooperative
-                    multitasking model that can create an impression of concurrency, while threading uses actual
-                    threads.</p>
-
-                <h3>Takeaway</h3>
-                <p>Use <code>asyncio</code> when your workload is dominated by waiting (I/O-bound tasks) and you need
-                    efficient concurrent task scheduling without the overhead of many threads.</p>
 
                 <p class="footer-note">Copyright 2026 Rohit Maity. All rights reserved.</p>
             </main>
         </div>
     </div>
+    <script src="../assets/js/main.js" defer></script>
 </body>
 
 </html>
