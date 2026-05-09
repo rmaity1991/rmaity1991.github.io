@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="640" viewBox="0 0 920 640" role="img" aria-labelledby="title desc">
+  <title id="title">Nyquist Plot for L(s)=10/(s(s+2))</title>
+  <desc id="desc">Stylized Nyquist diagram highlighting the -1+j0 critical point for the worked example.</desc>
+  <rect x="0" y="0" width="920" height="640" fill="#f8f3ed"/>
+  <rect x="40" y="40" width="840" height="560" fill="#ffffff" stroke="#d6c6b8" stroke-width="2" rx="8"/>
+
+  <line x1="120" y1="320" x2="820" y2="320" stroke="#666" stroke-width="1.5"/>
+  <line x1="470" y1="100" x2="470" y2="540" stroke="#666" stroke-width="1.5"/>
+
+  <text x="460" y="88" font-family="Roboto, Arial, sans-serif" font-size="16" fill="#43362f">Imaginary</text>
+  <text x="790" y="344" font-family="Roboto, Arial, sans-serif" font-size="16" fill="#43362f">Real</text>
+
+  <path d="M 760 325 C 690 370, 560 470, 470 505 C 350 545, 250 460, 210 350 C 190 300, 190 250, 220 220 C 255 185, 320 185, 375 215 C 425 245, 445 275, 450 305"
+        fill="none" stroke="#7a4e35" stroke-width="4"/>
+  <path d="M 760 315 C 690 270, 560 170, 470 135 C 350 95, 250 180, 210 290 C 190 340, 190 390, 220 420 C 255 455, 320 455, 375 425 C 425 395, 445 365, 450 335"
+        fill="none" stroke="#b08a6a" stroke-width="3" stroke-dasharray="10 8"/>
+
+  <circle cx="410" cy="320" r="7" fill="#cc1f1f"/>
+  <text x="422" y="310" font-family="Roboto, Arial, sans-serif" font-size="16" fill="#43362f">-1 + j0</text>
+
+  <text x="68" y="76" font-family="Roboto, Arial, sans-serif" font-size="26" fill="#5a4438">Nyquist Plot for L(s)=10/(s(s+2))</text>
+  <rect x="640" y="470" width="220" height="96" fill="#efe4d7" stroke="#d6c6b8" rx="6"/>
+  <line x1="656" y1="500" x2="704" y2="500" stroke="#7a4e35" stroke-width="4"/>
+  <text x="714" y="506" font-family="Roboto, Arial, sans-serif" font-size="14" fill="#43362f">L(jw), w&gt;0</text>
+  <line x1="656" y1="532" x2="704" y2="532" stroke="#b08a6a" stroke-width="3" stroke-dasharray="10 8"/>
+  <text x="714" y="538" font-family="Roboto, Arial, sans-serif" font-size="14" fill="#43362f">Conjugate mirror</text>
+</svg>

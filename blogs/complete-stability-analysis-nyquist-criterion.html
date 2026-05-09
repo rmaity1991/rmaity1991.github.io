@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <meta name="description"
+        content="Complete stability analysis using Nyquist criterion with corrected worked example and margins.">
+    <title>Complete Stability Analysis Using Nyquist Criterion</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700&display=swap" rel="stylesheet">
+    <link href="../assets/css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <aside class="col-md-5">
+                <div class="sticky-top">
+                    <h2 class="mb-1">
+                        <a class="text-muted" href="../index.html">home page</a>
+                        <span class="text-muted">of</span>
+                    </h2>
+                    <h1 class="mb-1"><a href="../index.html">Rohit Maity</a></h1>
+                    <h2 class="mb-1 ps-md-5">Senior Staff Design Engineer @ Schneider Electric Industrial Automation |
+                        Python | Machine Learning | Deep Learning</h2>
+                    <h3 class="mb-0"><a href="mailto:official.rohitmaity@gmail.com">official.rohitmaity@gmail.com</a>
+                    </h3>
+                    <p class="social-line mb-0">
+                        <a class="text-emphasis" href="https://www.linkedin.com/in/rohit-maity-85334a114/"
+                            target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        <a class="text-emphasis" href="https://github.com/rmaity1991" target="_blank"
+                            rel="noopener noreferrer">GitHub</a>
+                    </p>
+                    <p class="follow-line mb-0">
+                        <a class="link-btn" href="https://github.com/rmaity1991/" target="_blank"
+                            rel="noopener noreferrer">Follow For Latest Updates</a>
+                    </p>
+                    <nav>
+                        <ul class="nav">
+                            <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../projects.html">Projects</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="../blogs.html">Technical Blogs</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="../certifications.html">Certifications</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+
+            <main class="col-md-7 blog-content">
+                <p class="inline-actions">
+                    <a class="link-btn"
+                        href="https://www.linkedin.com/sharing/share-offsite/?url=https://rmaity1991.github.io/blogs/complete-stability-analysis-nyquist-criterion.html"
+                        target="_blank" rel="noopener noreferrer">Share on LinkedIn</a>
+                    <a class="link-btn" href="../blogs.html">Back to All Blogs</a>
+                </p>
+
+                <div class="blog-article panel">
+                    <h2>Complete Stability Analysis Using Nyquist Criterion (Improved)</h2>
+
+                    <h3>1. Mathematical Foundation</h3>
+                    <p>For a feedback system</p>
+                    <pre><code>T(s)=L(s)/(1+L(s)),    L(s)=G(s)H(s)</code></pre>
+                    <p>closed-loop poles are roots of</p>
+                    <pre><code>1+L(s)=0</code></pre>
+                    <p>Using argument principle on the standard Nyquist contour:</p>
+                    <pre><code>N=Z-P</code></pre>
+                    <p>where:</p>
+                    <ul>
+                        <li><code>N</code>: net clockwise encirclements of <code>-1+j0</code> by Nyquist plot of
+                            <code>L(s)</code>
+                        </li>
+                        <li><code>P</code>: number of open-loop poles of <code>L(s)</code> in the right-half plane (RHP)
+                        </li>
+                        <li><code>Z</code>: number of closed-loop poles in the RHP</li>
+                    </ul>
+                    <p>So:</p>
+                    <pre><code>Z=N+P</code></pre>
+                    <p>Closed-loop stability requires <code>Z=0</code>.</p>
+
+                    <h3>2. Important Practical Caveat</h3>
+                    <p>If <code>L(s)</code> has poles on the imaginary axis (for example at <code>s=0</code>), use the
+                        modified Nyquist contour with a small indentation around those poles. The direct statement
+                        <code>P=0</code> is only about RHP poles; imaginary-axis poles are handled by contour
+                        deformation,
+                        not by adding to <code>P</code>.
+                    </p>
+
+                    <h3>3. Corrected Worked Example</h3>
+                    <p>Given:</p>
+                    <pre><code>L(s)=10/(s(s+2))</code></pre>
+
+                    <h3>3.1 Open-loop poles</h3>
+                    <ul>
+                        <li>poles at <code>s=0</code> and <code>s=-2</code></li>
+                        <li>RHP pole count: <code>P=0</code></li>
+                        <li>one imaginary-axis pole at origin -> use indented contour</li>
+                    </ul>
+
+                    <h3>3.2 Closed-loop stability check</h3>
+                    <p>Closed-loop characteristic equation:</p>
+                    <pre><code>1+10/(s(s+2))=0
+=> s^2+2s+10=0</code></pre>
+                    <p>Roots:</p>
+                    <pre><code>s=-1 +/- j3</code></pre>
+                    <p>Both roots are in LHP, so closed-loop is stable (<code>Z=0</code>). Nyquist conclusion must match
+                        this.</p>
+
+                    <figure class="figure">
+                        <img src="../images/nyquist-criterion-output-1.svg"
+                            alt="Nyquist plot output for L(s)=10 over s times s plus 2">
+                        <figcaption class="figure-caption">Output image: Nyquist locus and critical point
+                            <code>-1+j0</code>.
+                        </figcaption>
+                    </figure>
+
+                    <h3>4. Corrected Gain Margin and Phase Margin for the Example</h3>
+                    <p>For</p>
+                    <pre><code>L(jw)=10/(jw(jw+2))</code></pre>
+
+                    <h3>4.1 Gain crossover frequency</h3>
+                    <p>Solve <code>|L(jw)|=1</code>:</p>
+                    <pre><code>10/(w*sqrt(w^2+4))=1
+=> w^4+4w^2-100=0</code></pre>
+                    <p>Let <code>y=w^2</code>:</p>
+                    <pre><code>y^2+4y-100=0
+=> y=-2+2*sqrt(26) ~= 8.198</code></pre>
+                    <p>So:</p>
+                    <pre><code>w_gc ~= 2.863 rad/s</code></pre>
+
+                    <h3>4.2 Phase at gain crossover</h3>
+                    <pre><code>angle L(jw) = -90 deg - tan^-1(w/2)</code></pre>
+                    <p>At <code>w_gc</code>:</p>
+                    <pre><code>angle L(jw_gc) ~= -90 deg - tan^-1(1.431) ~= -145.1 deg</code></pre>
+                    <p>Hence:</p>
+                    <pre><code>PM = 180 deg + angle L(jw_gc) ~= 34.9 deg</code></pre>
+
+                    <h3>4.3 Gain margin</h3>
+                    <p>For this ideal plant, phase reaches <code>-180 deg</code> only asymptotically
+                        (<code>w->infinity</code>),
+                        so there is no finite phase crossover frequency. Therefore ideal-model gain margin is infinite.
+                    </p>
+                    <p>Note: in real systems, additional delay/high-frequency poles typically make GM finite.</p>
+
+                    <figure class="figure">
+                        <img src="../images/nyquist-criterion-output-2.svg"
+                            alt="Bode magnitude and phase output for L(s)=10 over s times s plus 2">
+                        <figcaption class="figure-caption">Output image: Bode trends used to read PM and GM behavior.
+                        </figcaption>
+                    </figure>
+
+                    <h3>5. Relative Stability Interpretation (Corrected)</h3>
+                    <ul>
+                        <li>Nyquist curve closer to <code>-1</code> -> lower damping and higher overshoot tendency.</li>
+                        <li>Nyquist curve farther from <code>-1</code> -> better damping margin.</li>
+                        <li>Passing through <code>-1</code> -> closed-loop marginal/unstable boundary.</li>
+                    </ul>
+
+                    <h3>6. M-Circle and N-Circle Usage</h3>
+                    <p>For unity feedback:</p>
+                    <pre><code>|L/(1+L)| = M</code></pre>
+                    <p>M-circles and N-circles are valid graphical tools to estimate closed-loop frequency response and
+                        resonance trends.</p>
+                    <p>Use them with these constraints:</p>
+                    <ol>
+                        <li>Dominant second-order behavior should be approximately valid.</li>
+                        <li>Significant delays/non-minimum-phase zeros reduce correlation quality.</li>
+                        <li>Readings are approximate unless verified numerically.</li>
+                    </ol>
+
+                    <h3>7. Time-Domain Correlation Caveats</h3>
+                    <p>The relation</p>
+                    <pre><code>zeta ~= PM/100</code></pre>
+                    <p>is only a rule of thumb, usually acceptable for moderate PM ranges (about 30 to 70 deg) and near
+                        second-order dominant systems. Do not use as an exact identity.</p>
+                    <p>A safer workflow is:</p>
+                    <ol>
+                        <li>Use Nyquist/Bode to ensure stability margins.</li>
+                        <li>Estimate damping/overshoot from PM and resonance trends.</li>
+                        <li>Confirm with closed-loop pole locations or simulation.</li>
+                    </ol>
+
+                    <figure class="figure">
+                        <img src="../images/nyquist-criterion-output-3.svg"
+                            alt="Closed-loop pole output showing minus one plus minus j three">
+                        <figcaption class="figure-caption">Output image: closed-loop poles from
+                            <code>s^2+2s+10=0</code>.
+                        </figcaption>
+                    </figure>
+
+                    <h3>8. Summary for the Given Plant</h3>
+                    <p>For <code>L(s)=10/(s(s+2))</code>:</p>
+                    <ul>
+                        <li><code>P=0</code> (RHP poles)</li>
+                        <li>one pole at origin requires contour indentation</li>
+                        <li>closed-loop poles: <code>-1 +/- j3</code> -> stable</li>
+                        <li>corrected phase margin: about <code>34.9 deg</code></li>
+                        <li>ideal gain margin: infinite</li>
+                    </ul>
+                </div>
+
+                <p class="footer-note">Copyright 2026 Rohit Maity. All rights reserved.</p>
+            </main>
+        </div>
+    </div>
+    <script src="../assets/js/main.js" defer></script>
+</body>
+
+</html>

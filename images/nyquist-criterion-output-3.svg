@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="620" viewBox="0 0 840 620" role="img" aria-labelledby="title desc">
+  <title id="title">Closed-Loop Pole Map: s^2+2s+10=0</title>
+  <desc id="desc">Pole map showing the conjugate pair -1 plus-minus j3 in the left half plane.</desc>
+  <rect x="0" y="0" width="840" height="620" fill="#f8f3ed"/>
+  <rect x="40" y="40" width="760" height="540" fill="#ffffff" stroke="#d6c6b8" stroke-width="2" rx="8"/>
+
+  <text x="68" y="76" font-family="Roboto, Arial, sans-serif" font-size="26" fill="#5a4438">Closed-Loop Poles: s^2 + 2s + 10 = 0</text>
+
+  <line x1="110" y1="310" x2="760" y2="310" stroke="#666" stroke-width="1.5"/>
+  <line x1="430" y1="110" x2="430" y2="520" stroke="#666" stroke-width="1.5"/>
+
+  <line x1="355" y1="200" x2="380" y2="225" stroke="#7a4e35" stroke-width="5"/>
+  <line x1="380" y1="200" x2="355" y2="225" stroke="#7a4e35" stroke-width="5"/>
+  <line x1="355" y1="395" x2="380" y2="420" stroke="#7a4e35" stroke-width="5"/>
+  <line x1="380" y1="395" x2="355" y2="420" stroke="#7a4e35" stroke-width="5"/>
+
+  <text x="390" y="208" font-family="Roboto, Arial, sans-serif" font-size="15" fill="#43362f">-1 + j3</text>
+  <text x="390" y="424" font-family="Roboto, Arial, sans-serif" font-size="15" fill="#43362f">-1 - j3</text>
+
+  <text x="738" y="334" font-family="Roboto, Arial, sans-serif" font-size="16" fill="#43362f">Real</text>
+  <text x="438" y="126" font-family="Roboto, Arial, sans-serif" font-size="16" fill="#43362f">Imaginary</text>
+
+  <rect x="560" y="470" width="220" height="80" fill="#efe4d7" stroke="#d6c6b8" rx="6"/>
+  <text x="576" y="498" font-family="Roboto, Arial, sans-serif" font-size="14" fill="#43362f">Characteristic equation:</text>
+  <text x="576" y="522" font-family="Roboto, Arial, sans-serif" font-size="14" fill="#43362f">s^2 + 2s + 10 = 0</text>
+</svg>

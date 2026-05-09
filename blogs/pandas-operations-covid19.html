@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <meta name="description" content="Practical Pandas operations for data analysis using COVID-19 dataset.">
+    <title>Pandas Operations: Practical Data Analysis with COVID-19 Dataset</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700&display=swap" rel="stylesheet">
+    <link href="../assets/css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <aside class="col-md-5">
+                <div class="sticky-top">
+                    <h2 class="mb-1">
+                        <a class="text-muted" href="../index.html">home page</a>
+                        <span class="text-muted">of</span>
+                    </h2>
+                    <h1 class="mb-1"><a href="../index.html">Rohit Maity</a></h1>
+                    <h2 class="mb-1 ps-md-5">Senior Staff Design Engineer @ Schneider Electric Industrial Automation |
+                        Python | Machine Learning | Deep Learning</h2>
+                    <h3 class="mb-0"><a href="mailto:official.rohitmaity@gmail.com">official.rohitmaity@gmail.com</a>
+                    </h3>
+                    <p class="social-line mb-0">
+                        <a class="text-emphasis" href="https://www.linkedin.com/in/rohit-maity-85334a114/"
+                            target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        <a class="text-emphasis" href="https://github.com/rmaity1991" target="_blank"
+                            rel="noopener noreferrer">GitHub</a>
+                    </p>
+                    <p class="follow-line mb-0">
+                        <a class="link-btn" href="https://github.com/rmaity1991/" target="_blank"
+                            rel="noopener noreferrer">Follow For Latest Updates</a>
+                    </p>
+                    <nav>
+                        <ul class="nav">
+                            <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../projects.html">Projects</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="../blogs.html">Technical Blogs</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="../certifications.html">Certifications</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+
+            <main class="col-md-7 blog-content">
+                <p class="inline-actions">
+                    <a class="link-btn"
+                        href="https://www.linkedin.com/sharing/share-offsite/?url=https://rmaity1991.github.io/blogs/pandas-operations-covid19.html"
+                        target="_blank" rel="noopener noreferrer">Share on LinkedIn</a>
+                    <a class="link-btn" href="../blogs.html">Back to All Blogs</a>
+                </p>
+
+                <div class="blog-article panel">
+                    <h2>Pandas Operations: Practical Data Analysis with COVID-19 Dataset</h2>
+
+                    <p>Pandas is one of the most useful Python libraries for data analysis. It provides two core data
+                        structures, <code>Series</code> and <code>DataFrame</code>, which help us clean, explore,
+                        transform, and summarize tabular data quickly.</p>
+
+                    <p>In this post, we will go through practical Pandas operations using a real dataset:
+                        <code>covid19_italy_region.csv</code>.
+                    </p>
+
+                    <pre><code>import pandas as pd
+
+covid_df = pd.read_csv("covid19_italy_region.csv")</code></pre>
+
+                    <h3>Initial Exploration</h3>
+
+                    <p>After loading data, the first step is to inspect what we have.</p>
+
+                    <pre><code>type(covid_df)</code></pre>
+
+                    <p><strong>Output type:</strong></p>
+                    <ul>
+                        <li><code>pandas.core.frame.DataFrame</code></li>
+                    </ul>
+
+                    <p>Check structure and metadata:</p>
+
+                    <pre><code>covid_df.info()
+covid_df.describe()</code></pre>
+
+                    <p><strong>Important observations:</strong></p>
+                    <ul>
+                        <li>Dataset has <code>6027</code> rows and <code>17</code> columns.</li>
+                        <li>Most columns are numeric (<code>int64</code> / <code>float64</code>), with a few object
+                            columns (<code>Date</code>, <code>Country</code>, <code>RegionName</code>).</li>
+                        <li><code>TestsPerformed</code> has missing values.</li>
+                    </ul>
+
+                    <p>Get column names and shape:</p>
+
+                    <pre><code>covid_df.columns
+covid_df.shape</code></pre>
+
+                    <h3>Accessing Columns and Values</h3>
+
+                    <p>Extract a single column:</p>
+
+                    <pre><code>covid_df["NewPositiveCases"]</code></pre>
+
+                    <p>Check returned type:</p>
+
+                    <pre><code>type(covid_df["NewPositiveCases"])</code></pre>
+
+                    <p><strong>Output type:</strong></p>
+                    <ul>
+                        <li><code>pandas.core.series.Series</code></li>
+                    </ul>
+
+                    <p>Access a specific value:</p>
+
+                    <pre><code>covid_df["NewPositiveCases"][246]
+covid_df.at[246, "NewPositiveCases"]</code></pre>
+
+                    <p>Both lines fetch the same cell value, but <code>.at</code> is the preferred label-based scalar
+                        accessor.</p>
+
+                    <p>You can also use dot notation for simple column names:</p>
+
+                    <pre><code>covid_df.NewPositiveCases</code></pre>
+
+                    <h3>Selecting Multiple Columns and Copying</h3>
+
+                    <p>Create a smaller view with selected columns:</p>
+
+                    <pre><code>cases_df = covid_df[["Date", "NewPositiveCases"]]
+cases_df</code></pre>
+
+                    <p>Create a defensive copy before major transformations:</p>
+
+                    <pre><code>covid_df_copy = covid_df.copy()</code></pre>
+
+                    <h3>Row Access with loc, head, tail, and sample</h3>
+
+                    <p>Select a row by index label:</p>
+
+                    <pre><code>covid_df.loc[243]
+type(covid_df.loc[243])</code></pre>
+
+                    <p>Quickly preview top rows:</p>
+
+                    <pre><code>covid_df.head(5)</code></pre>
+
+                    <p>Preview bottom rows:</p>
+
+                    <pre><code>covid_df.tail(4)</code></pre>
+
+                    <p>Slice index range:</p>
+
+                    <pre><code>covid_df.loc[108:113]</code></pre>
+
+                    <p>Random sample for quick validation:</p>
+
+                    <pre><code>covid_df.sample(10)</code></pre>
+
+                    <h3>Basic Metrics and Ratios</h3>
+
+                    <p>Compute simple high-level metrics:</p>
+
+                    <pre><code>total_cases = covid_df.CurrentPositiveCases.sum()
+total_deaths = covid_df.Deaths.sum()
+
+print("The number of reported cases is {} and the number of reported deaths is {}.".format(total_cases, total_deaths))
+
+death_rate = covid_df.Deaths.sum() / covid_df.CurrentPositiveCases.sum()
+print("The overall reported death rate in Italy is {:.2f} %.".format(death_rate * 100))
+
+initial_tests = 935310
+total_tests = initial_tests + covid_df.TestsPerformed.sum()
+positive_rate = total_cases / total_tests
+print("{:.2f}% of tests in Italy led to a positive diagnosis.".format(positive_rate * 100))</code></pre>
+
+                    <h3>Boolean Filtering</h3>
+
+                    <p>Find rows with high daily new cases:</p>
+
+                    <pre><code>high_new_cases = covid_df.NewPositiveCases > 1000
+high_cases_df = covid_df[high_new_cases]
+high_cases_df</code></pre>
+
+                    <p>Create and use a calculated ratio column:</p>
+
+                    <pre><code>covid_df["positive_rate"] = covid_df.NewPositiveCases / covid_df.TestsPerformed
+covid_df</code></pre>
+
+                    <p>Filter rows based on ratio threshold:</p>
+
+                    <pre><code>high_ratio_df = covid_df[covid_df.CurrentPositiveCases / covid_df.TestsPerformed > positive_rate]
+high_ratio_df</code></pre>
+
+                    <h3>Sorting Data</h3>
+
+                    <p>Top rows by new cases:</p>
+
+                    <pre><code>covid_df.sort_values("NewPositiveCases", ascending=False).head(10)</code></pre>
+
+                    <p>Top rows by deaths:</p>
+
+                    <pre><code>covid_df.sort_values("Deaths", ascending=False).head(10)</code></pre>
+
+                    <p>Smallest values by new cases:</p>
+
+                    <pre><code>covid_df.sort_values("NewPositiveCases").head(10)</code></pre>
+
+                    <p>Drop temporary column once done:</p>
+
+                    <pre><code>covid_df.drop(columns=["positive_rate"], inplace=True)</code></pre>
+
+                    <h3>Working with Date and Time</h3>
+
+                    <p>Convert <code>Date</code> from object to datetime:</p>
+
+                    <pre><code>covid_df["Date"] = pd.to_datetime(covid_df.Date)
+covid_df["Date"]</code></pre>
+
+                    <p>Extract useful date parts:</p>
+
+                    <pre><code>covid_df["year"] = pd.DatetimeIndex(covid_df.Date).year
+covid_df["month"] = pd.DatetimeIndex(covid_df.Date).month
+covid_df["day"] = pd.DatetimeIndex(covid_df.Date).day
+covid_df["weekday"] = pd.DatetimeIndex(covid_df.Date).weekday</code></pre>
+
+                    <p>Now the DataFrame has additional time-based features that can be used for aggregation and trend
+                        analysis.</p>
+
+                    <h3>Aggregations with Conditions and GroupBy</h3>
+
+                    <p>Filter a month and aggregate selected columns:</p>
+
+                    <pre><code>covid_df_may = covid_df[covid_df.month == 5]
+covid_df_may_metrics = covid_df_may[["NewPositiveCases", "Deaths", "TestsPerformed"]]
+covid_may_totals = covid_df_may_metrics.sum()
+covid_may_totals</code></pre>
+
+                    <p>Equivalent direct query:</p>
+
+                    <pre><code>covid_df[covid_df.month == 5][["NewPositiveCases", "Deaths", "TestsPerformed"]].sum()</code></pre>
+
+                    <p>Overall and conditional means:</p>
+
+                    <pre><code>covid_df.NewPositiveCases.mean()
+covid_df[covid_df.weekday == 6].NewPositiveCases.mean()</code></pre>
+
+                    <p>Monthly aggregates:</p>
+
+                    <pre><code>covid_month_df = covid_df.groupby("month")[["NewPositiveCases", "Deaths", "TestsPerformed"]].sum()
+covid_month_df
+
+covid_month_mean_df = covid_df.groupby("month")[["NewPositiveCases", "Deaths", "TestsPerformed"]].mean()
+covid_month_mean_df</code></pre>
+
+                    <h3>Cumulative Metrics</h3>
+
+                    <p>Create cumulative columns to track progression over time:</p>
+
+                    <pre><code>covid_df["total_cases"] = covid_df.TestsPerformed.cumsum()
+covid_df["total_deaths"] = covid_df.Deaths.cumsum()
+covid_df["total_tests"] = covid_df.TestsPerformed.cumsum() + initial_tests
+covid_df</code></pre>
+
+                    <h3>Combining Datasets with Merge</h3>
+
+                    <p>Load location-level metadata:</p>
+
+                    <pre><code>locations_df = pd.read_csv("locations.csv")
+locations_df
+locations_df[locations_df.location == "Italy"]</code></pre>
+
+                    <p>Add merge key and join:</p>
+
+                    <pre><code>covid_df["location"] = "Italy"
+merged_df = covid_df.merge(locations_df, on="location")
+merged_df</code></pre>
+
+                    <p>Derive per-million metrics:</p>
+
+                    <pre><code>merged_df["cases_per_million"] = merged_df.total_cases * 1e6 / merged_df.population
+merged_df["deaths_per_million"] = merged_df.total_deaths * 1e6 / merged_df.population
+merged_df["tests_per_million"] = merged_df.total_tests * 1e6 / merged_df.population
+merged_df</code></pre>
+
+                    <h3>Conclusion</h3>
+
+                    <p>This workflow shows how Pandas can handle end-to-end data analysis tasks:</p>
+
+                    <ul>
+                        <li>Data loading and schema inspection</li>
+                        <li>Column/row indexing and scalar access</li>
+                        <li>Filtering and sorting</li>
+                        <li>Date conversion and feature engineering</li>
+                        <li>Grouped aggregations</li>
+                        <li>Cumulative metrics</li>
+                        <li>Dataset merging and derived indicators</li>
+                    </ul>
+
+                    <p>If you practice these operations with your own datasets, you can build strong foundations for
+                        analytics, machine learning preprocessing, and dashboard-ready data pipelines.</p>
+                </div>
+
+                <p class="footer-note">Copyright 2026 Rohit Maity. All rights reserved.</p>
+            </main>
+        </div>
+    </div>
+    <script src="../assets/js/main.js" defer></script>
+</body>
+
+</html>
